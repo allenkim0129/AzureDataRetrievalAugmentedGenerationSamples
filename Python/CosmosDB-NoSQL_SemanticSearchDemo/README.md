@@ -28,7 +28,13 @@ This repository contains a Python Streamlit application that demonstrates advanc
 
 ## Prerequisites
 
-- [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) account with NoSQL API with vector search and full text search enabled
+- [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) account with NoSQL API
+  - **⚠️ IMPORTANT:** You must enable the following preview features in your Azure Cosmos DB account:
+    - Navigate to your Cosmos DB account in the Azure Portal
+    - Go to **Settings** → **Features**
+    - Enable **"Vector Search for NoSQL API"** 
+    - Enable **"Preview Features for Full Text Search"**
+    - These features are required for vector indexing and full text search capabilities
 - [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service) account
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli) (for local authentication)
 
@@ -107,7 +113,34 @@ The app uses **keyless authentication** with Azure Cosmos DB:
 az login
 ```
 
-### 7. Run the Application
+### 7. Load Sample Data
+
+**⚠️ IMPORTANT:** You must load data into your Azure Cosmos DB database before running the application. The search functionality requires data to be present.
+
+Make sure your virtual environment is activated, then run the data loader:
+
+**PowerShell (Windows):**
+```powershell
+.\venv\Scripts\Activate.ps1
+python src\data\data-loader.py --text_field_name "overview" --path_to_json_array "https://raw.githubusercontent.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/refs/heads/main/DataSet/Movies/MovieLens-4489-256D.json" --database_name "searchdemo2" --concurrency 5 --vector_field_name "vector" --re_embed True
+```
+
+**Bash (Linux/macOS):**
+```bash
+source venv/bin/activate
+python src/data/data-loader.py --text_field_name "overview" --path_to_json_array "https://raw.githubusercontent.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/refs/heads/main/DataSet/Movies/MovieLens-4489-256D.json" --database_name "searchdemo2" --concurrency 5 --vector_field_name "vector" --re_embed True
+```
+
+**What this does:**
+- Downloads the movie dataset (4,489 records) from GitHub
+- Creates Azure Cosmos DB containers with vector and full text indexing
+- Generates embeddings using Azure OpenAI
+- Loads all data into both `search_qflat` and `search_diskann` containers
+- Takes approximately 10-15 minutes to complete
+
+**Note:** Make sure the `COSMOS_DB_DATABASE` in your `.env` file matches the `--database_name` parameter (e.g., "searchdemo2").
+
+### 8. Run the Application
 
 Make sure your virtual environment is activated, then choose one of the options below:
 
