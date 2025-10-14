@@ -181,7 +181,7 @@ if "cosmos_client" not in st.session_state:
         st.session_state.cosmos_container_qflat = st.session_state.cosmos_database.create_container_if_not_exists(
             id=container_name_qflat,
             partition_key=PartitionKey(path="/id"),
-            full_text_policy=full_text_policy,  # Temporarily commented out for compatibility
+            full_text_policy=full_text_policy,
             vector_embedding_policy=vector_embedding_policy,
             indexing_policy=qflat_indexing_policy,
             offer_throughput=400
@@ -192,7 +192,7 @@ if "cosmos_client" not in st.session_state:
         st.session_state.cosmos_container_diskann = st.session_state.cosmos_database.create_container_if_not_exists(
             id=container_name_diskann,
             partition_key=PartitionKey(path="/id"),
-            full_text_policy=full_text_policy,  # Temporarily commented out for compatibility
+            full_text_policy=full_text_policy,
             vector_embedding_policy=vector_embedding_policy,
             indexing_policy=diskann_indexing_policy,
             offer_throughput=400
