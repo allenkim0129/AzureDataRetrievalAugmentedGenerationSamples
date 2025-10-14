@@ -1,5 +1,5 @@
-# Use local wheel file for azure-cosmos with semantic reranker support
-./azure_cosmos-4.14.0a20251001002-py3-none-any.whl
+# Requirements for the application
+azure-cosmos==4.14.0
 azure-identity~=1.19.0
 streamlit~=1.39.0
 sshtunnel

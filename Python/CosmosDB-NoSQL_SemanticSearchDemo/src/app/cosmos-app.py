@@ -300,9 +300,9 @@ def rerank_results_with_cosmos_sdk(container, query, results_df, use_reranker=Fa
         # Call the Cosmos SDK semantic_rerank method
         try:
             reranked_data = container.semantic_rerank(
-                reranking_context=query,
+                context=query,
                 documents=documents,
-                semantic_reranking_options={
+                options={
                     "return_documents": True,
                     "top_k": len(documents),  # Return all documents reranked
                     "batch_size": 32,
