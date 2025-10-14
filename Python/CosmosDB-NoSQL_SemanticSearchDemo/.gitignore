@@ -1,0 +1,11 @@
+.env
+.diskann
+.DS_Store
+.azure
+.idea
+.deployment
+.vscode
+venv
+__pycache__/
+*.pyc
+*.pyo
