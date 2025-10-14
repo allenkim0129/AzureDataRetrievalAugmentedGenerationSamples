@@ -174,17 +174,6 @@ if "cosmos_client" not in st.session_state:
         ]
     }
 
-    # Create listings_search container without any index
-    # container_name = 'search'
-    # st.session_state.cosmos_container = st.session_state.cosmos_database.create_container_if_not_exists(
-    #     id=container_name,
-    #     partition_key=PartitionKey(path="/id"),
-    #     full_text_policy=full_text_policy,
-    #     vector_embedding_policy=vector_embedding_policy#,
-    #     #offer_throughput=1000
-    # )
-
-
     # Create containers only if we have a valid database connection
     if st.session_state.cosmos_database is not None:
         # Create listings_search_qflat container with QFLAT vector index
@@ -192,7 +181,7 @@ if "cosmos_client" not in st.session_state:
         st.session_state.cosmos_container_qflat = st.session_state.cosmos_database.create_container_if_not_exists(
             id=container_name_qflat,
             partition_key=PartitionKey(path="/id"),
-            # full_text_policy=full_text_policy,  # Temporarily commented out for compatibility
+            full_text_policy=full_text_policy,  # Temporarily commented out for compatibility
             vector_embedding_policy=vector_embedding_policy,
             indexing_policy=qflat_indexing_policy,
             offer_throughput=400
@@ -203,7 +192,7 @@ if "cosmos_client" not in st.session_state:
         st.session_state.cosmos_container_diskann = st.session_state.cosmos_database.create_container_if_not_exists(
             id=container_name_diskann,
             partition_key=PartitionKey(path="/id"),
-            # full_text_policy=full_text_policy,  # Temporarily commented out for compatibility
+            full_text_policy=full_text_policy,  # Temporarily commented out for compatibility
             vector_embedding_policy=vector_embedding_policy,
             indexing_policy=diskann_indexing_policy,
             offer_throughput=400
