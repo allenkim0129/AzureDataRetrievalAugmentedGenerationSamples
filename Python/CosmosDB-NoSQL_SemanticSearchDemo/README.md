@@ -1,8 +1,8 @@
 # Semantic Search Demo for Azure Cosmos DB
 
-This repository contains a Python Streamlit application that demonstrates advanced search capabilities using Azure Cosmos DB, OpenAI embeddings, and semantic reranking. The application showcases vector search, full text search, text ranking, and hybrid search with intelligent semantic reranking to improve result relevance.
+This folder contains a Python Streamlit application that demonstrates advanced search capabilities using Azure Cosmos DB and OpenAI. The application showcases vector search, full text search, text ranking, and hybrid search with intelligent semantic reranking to improve result relevance.
 
-> **🚨 IMPORTANT NOTICE**: The **Azure Cosmos DB Semantic Reranker** feature used in this demo is currently in **private preview**. To use the semantic reranking functionality, you must request special access from the Azure Cosmos DB team and obtain a private reranker endpoint. The application will work without this feature for all other search capabilities.
+> **🚨 IMPORTANT NOTICE**: The **Azure Cosmos DB Semantic Reranker** feature used in this demo is currently in **private preview**. To use the semantic reranking functionality, you must request special access from the Azure Cosmos DB team and obtain a private reranker endpoint. You can sign up here: https://aka.ms/AzureCosmosDB/RerankerPreview. For more information, contact us at CosmosDBSemanticReranker@Microsoft.com. The application will work without this feature for all other search capabilities.
 
 ![screenshot](media/screen-shot.png)
 
@@ -14,13 +14,12 @@ This repository contains a Python Streamlit application that demonstrates advanc
   - 🔄 **Hybrid search** combining semantic and full text search
   - 📊 **Text ranking** for enhanced result ordering
 - **🎯 Semantic Reranking** (⚠️ **PRIVATE PREVIEW**):
-  > **🚨 IMPORTANT**: The Azure Cosmos DB Semantic Reranker is currently in **private preview** and requires special access. Contact the Azure Cosmos DB team to request access and obtain your reranker endpoint before using this feature.
+  > **🚨 IMPORTANT**: The Azure Cosmos DB Semantic Reranker is currently in **private preview** and requires special access (see above).
   - Built-in Azure Cosmos DB SDK semantic reranking
   - Interactive UI toggle to enable/disable reranking
   - Preserves original metadata while improving result relevance
   - Uses DefaultAzureCredential for secure authentication
 - **📈 Multiple Index Support**:
-  - No Index baseline
   - QFLAT vector index for balanced performance
   - DiskANN vector index for high-scale scenarios
 - **🛡️ Robust Error Handling**:
@@ -46,7 +45,7 @@ This repository contains a Python Streamlit application that demonstrates advanc
 ### 1. Clone and Setup
 
 ```sh
-git clone https://github.com/TheovanKraay/AzureDataRetrievalAugmentedGenerationSamples.git
+git clone https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples.git
 cd AzureDataRetrievalAugmentedGenerationSamples/Python/CosmosDB-NoSQL_SemanticSearchDemo
 ```
 

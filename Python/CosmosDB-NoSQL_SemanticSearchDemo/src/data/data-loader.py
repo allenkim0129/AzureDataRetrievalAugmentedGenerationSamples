@@ -96,13 +96,12 @@ def initialize_cosmos(database_name):
                 "path": "/" + cosmos_vector_property,
                 "type": "quantizedFlat",
             }
+        ],
+        "fullTextIndexes": [
+            {
+                "path": "/" + cosmos_full_text_property
+            }
         ]
-        # Note: fullTextIndexes require full_text_policy which is not supported in current SDK version
-        # "fullTextIndexes": [
-        #     {
-        #         "path": "/" + cosmos_full_text_property
-        #     }
-        # ]
     }
     diskann_indexing_policy = {
         "includedPaths": [
@@ -116,26 +115,17 @@ def initialize_cosmos(database_name):
                 "path": "/" + cosmos_vector_property,
                 "type": "diskANN",
             }
+        ],
+        "fullTextIndexes": [
+            {
+                "path": "/" + cosmos_full_text_property
+            }
         ]
-        # Note: fullTextIndexes require full_text_policy which is not supported in current SDK version
-        # "fullTextIndexes": [
-        #     {
-        #         "path": "/" + cosmos_full_text_property
-        #     }
-        # ]
     }
     
     # Create containers if they don't exist (same as main app)
     containers = {}
-    
-    # Create search container without any index - commented out in main app
-    # container_name = 'search'
-    # containers[container_name] = database.create_container_if_not_exists(
-    #     id=container_name,
-    #     partition_key=PartitionKey(path="/id"),
-    #     full_text_policy=full_text_policy,
-    #     vector_embedding_policy=vector_embedding_policy
-    # )
+
     
     # Create search_qflat container with QFLAT vector index
     container_name_qflat = 'search_qflat'
